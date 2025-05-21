@@ -95,9 +95,10 @@ public class EntityHooks {
      * @see com.aetherteam.aether.mixin.mixins.common.ForgeEventFactoryMixin
      */
     public static boolean canMobSpawnWithAccessories(Entity entity) {
-        EntityType<?> entityType = entity.getType();
-        return entity instanceof Mob &&
-                (entityType == EntityType.ZOMBIE || entityType == EntityType.ZOMBIE_VILLAGER || entityType == EntityType.HUSK || entityType == EntityType.SKELETON || entityType == EntityType.STRAY || entityType == EntityType.PIGLIN);
+        return false; ///Finxd: made mobs no longer spawn with accessories
+//        EntityType<?> entityType = entity.getType();
+//        return entity instanceof Mob &&
+//                (entityType == EntityType.ZOMBIE || entityType == EntityType.ZOMBIE_VILLAGER || entityType == EntityType.HUSK || entityType == EntityType.SKELETON || entityType == EntityType.STRAY || entityType == EntityType.PIGLIN);
     }
 
     /**

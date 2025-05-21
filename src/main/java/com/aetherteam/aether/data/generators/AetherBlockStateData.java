@@ -117,8 +117,9 @@ public class AetherBlockStateData extends AetherBlockStateProvider {
         this.dungeonBlock(AetherBlocks.TREASURE_DOORWAY_HELLFIRE_STONE.get(), AetherBlocks.HELLFIRE_STONE.get());
         this.dungeonBlock(AetherBlocks.TREASURE_DOORWAY_LIGHT_HELLFIRE_STONE.get(), AetherBlocks.LIGHT_HELLFIRE_STONE.get());
 
-        this.chestMimic(AetherBlocks.CHEST_MIMIC.get(), Blocks.OAK_PLANKS);
-        this.treasureChest(AetherBlocks.TREASURE_CHEST.get(), AetherBlocks.CARVED_STONE.get());
+        ///Finxd: they are already added manually, these aren't needed
+//        this.chestMimic(AetherBlocks.CHEST_MIMIC.get(), Blocks.OAK_PLANKS);
+//        this.treasureChest(AetherBlocks.TREASURE_CHEST.get(), AetherBlocks.CARVED_STONE.get());
 
         this.pillar(AetherBlocks.PILLAR.get());
         this.pillarTop(AetherBlocks.PILLAR_TOP.get());

@@ -47,12 +47,14 @@ public class AmbrosiumShardItem extends Item implements ItemUseConversion<Ambros
 	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
 		if (AetherConfig.SERVER.edible_ambrosium.get()) {
 			ItemStack itemStack = player.getItemInHand(hand);
-			if (player.getHealth() < player.getMaxHealth() || player.isCreative()) {
-				player.startUsingItem(hand);
-				return InteractionResultHolder.consume(itemStack);
-			} else {
-				return InteractionResultHolder.fail(itemStack);
-			}
+//			if (player.getHealth() < player.getMaxHealth() || player.isCreative()) {
+//				player.startUsingItem(hand);
+//				return InteractionResultHolder.consume(itemStack);
+//			} else {
+//				return InteractionResultHolder.fail(itemStack);
+//			}
+			player.startUsingItem(hand);
+			return InteractionResultHolder.consume(itemStack); ///Finxd: always-edible ambrosium
 		} else {
 			return InteractionResultHolder.pass(player.getItemInHand(hand));
 		}
@@ -88,7 +90,8 @@ public class AmbrosiumShardItem extends Item implements ItemUseConversion<Ambros
 	 */
 	@Override
 	public int getUseDuration(ItemStack stack) {
-		return AetherConfig.SERVER.edible_ambrosium.get() ? 16 : 0;
+		//return AetherConfig.SERVER.edible_ambrosium.get() ? 16 : 0;
+		return AetherConfig.SERVER.edible_ambrosium.get() ? 1 : 0; ///Finxd: instant-eat ambrosium
 	}
 
 	@Override

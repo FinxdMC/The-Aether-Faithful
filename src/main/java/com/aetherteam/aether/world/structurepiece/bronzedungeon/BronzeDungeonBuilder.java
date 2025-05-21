@@ -90,7 +90,8 @@ public class BronzeDungeonBuilder {
             this.propagateRooms(chestRoom, chunkPos, true);
             StructurePiece lobby = this.nodes.get(this.nodes.size() - 1);
             this.buildEndTunnel(lobby, startPos);
-            this.buildSurfaceTunnel(genContext.heightAccessor(), genContext.chunkGenerator(), genContext.randomState());
+            ///Finxd: removed the surface ruins to make dungeon hunting fun again
+            //this.buildSurfaceTunnel(genContext.heightAccessor(), genContext.chunkGenerator(), genContext.randomState());
 
             this.populatePiecesBuilder(builder);
         }

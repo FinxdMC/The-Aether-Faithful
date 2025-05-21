@@ -313,8 +313,9 @@ public class AetherItemModelData extends AetherItemModelProvider {
         this.itemTreasureDoorwayDungeonBlock(AetherBlocks.TREASURE_DOORWAY_HELLFIRE_STONE.get(), AetherBlocks.HELLFIRE_STONE.get());
         this.itemTreasureDoorwayDungeonBlock(AetherBlocks.TREASURE_DOORWAY_LIGHT_HELLFIRE_STONE.get(), AetherBlocks.LIGHT_HELLFIRE_STONE.get());
 
-        this.lookalikeBlock(AetherBlocks.CHEST_MIMIC.get(), this.mcLoc("item/chest"));
-        this.lookalikeBlock(AetherBlocks.TREASURE_CHEST.get(), this.mcLoc("item/chest"));
+        ///Finxd: they are already added manually, these aren't needed
+//        this.lookalikeBlock(AetherBlocks.CHEST_MIMIC.get(), this.mcLoc("item/chest"));
+//        this.lookalikeBlock(AetherBlocks.TREASURE_CHEST.get(), this.mcLoc("item/chest"));
 
         this.itemBlock(AetherBlocks.PILLAR.get());
         this.itemBlock(AetherBlocks.PILLAR_TOP.get());

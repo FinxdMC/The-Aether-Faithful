@@ -125,7 +125,8 @@ public class DartShooterItem extends ProjectileWeaponItem implements Vanishable 
      */
     @Override
     public int getUseDuration(ItemStack stack) {
-        return 10;
+        //return 10;
+        return 1; ///Finxd: original mod had no cooldown
     }
 
     @Override

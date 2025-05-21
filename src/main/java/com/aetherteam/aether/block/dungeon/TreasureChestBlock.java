@@ -46,10 +46,12 @@ import java.util.function.Supplier;
 /**
  * Mostly copied from {@link ChestBlock}.
  */
-public class TreasureChestBlock extends AbstractChestBlock<TreasureChestBlockEntity> implements SimpleWaterloggedBlock {
+//public class TreasureChestBlock extends AbstractChestBlock<TreasureChestBlockEntity> implements SimpleWaterloggedBlock {
+public class TreasureChestBlock extends AbstractChestBlock<TreasureChestBlockEntity> { ///Finxd: no waterlogged, please
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
-	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-	protected static final VoxelShape SHAPE = Block.box(1.0, 0.0, 1.0, 15.0, 14.0, 15.0);
+	//public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+	//protected static final VoxelShape SHAPE = Block.box(1.0, 0.0, 1.0, 15.0, 14.0, 15.0);
+	protected static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0, 16.0, 16.0, 16.0); ///Finxd: made the treasure chest a full block
 
 	public TreasureChestBlock(Properties properties) {
 		this(properties, AetherBlockEntityTypes.TREASURE_CHEST::get);
@@ -57,22 +59,24 @@ public class TreasureChestBlock extends AbstractChestBlock<TreasureChestBlockEnt
 
 	public TreasureChestBlock(Properties properties, Supplier<BlockEntityType<? extends TreasureChestBlockEntity>> blockEntityTypeSupplier) {
 		super(properties, blockEntityTypeSupplier);
-		this.registerDefaultState(this.getStateDefinition().any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, false));
+		//this.registerDefaultState(this.getStateDefinition().any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, false));
+		this.registerDefaultState(this.getStateDefinition().any().setValue(FACING, Direction.NORTH));
 	}
 
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		builder.add(FACING, WATERLOGGED);
+		//builder.add(FACING, WATERLOGGED);
+		builder.add(FACING);
 	}
 
 	/**
 	 * Warning for "deprecation" is suppressed because the method is fine to override.
 	 */
 	@SuppressWarnings("deprecation")
-	@Override
-	public FluidState getFluidState(BlockState state) {
-		return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
-	}
+//	@Override
+//	public FluidState getFluidState(BlockState state) {
+//		return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
+//	}
 
 	@Override
 	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
@@ -142,7 +146,8 @@ public class TreasureChestBlock extends AbstractChestBlock<TreasureChestBlockEnt
 						return InteractionResult.CONSUME;
 					}
 				}
-				player.displayClientMessage(Component.translatable(kind.getNamespace() + "." + kind.getPath() + "_treasure_chest_locked"), true);
+				//player.displayClientMessage(Component.translatable(kind.getNamespace() + "." + kind.getPath() + "_treasure_chest_locked"), true);
+				player.displayClientMessage(Component.translatable(kind.getNamespace() + "." + kind.getPath() + "_treasure_chest_locked"), false); ///Finxd: old-styled locked chest messages, for some reason it shows it 2 times :/
 			} else {
 				MenuProvider menuProvider = this.getMenuProvider(state, level, pos);
 				player.openMenu(menuProvider);
@@ -157,7 +162,8 @@ public class TreasureChestBlock extends AbstractChestBlock<TreasureChestBlockEnt
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
 		Direction direction = context.getHorizontalDirection().getOpposite();
 		FluidState fluidState = context.getLevel().getFluidState(context.getClickedPos());
-		return this.defaultBlockState().setValue(FACING, direction).setValue(WATERLOGGED, fluidState.is(Fluids.WATER));
+		//return this.defaultBlockState().setValue(FACING, direction).setValue(WATERLOGGED, fluidState.is(Fluids.WATER));
+		return this.defaultBlockState().setValue(FACING, direction);
 	}
 
 	/**
@@ -315,7 +321,8 @@ public class TreasureChestBlock extends AbstractChestBlock<TreasureChestBlockEnt
 	@SuppressWarnings("deprecation")
 	@Override
 	public RenderShape getRenderShape(BlockState state) {
-		return RenderShape.ENTITYBLOCK_ANIMATED;
+		//return RenderShape.ENTITYBLOCK_ANIMATED;
+		return RenderShape.MODEL; ///Finxd
 	}
 
 	/**
@@ -324,9 +331,9 @@ public class TreasureChestBlock extends AbstractChestBlock<TreasureChestBlockEnt
 	@SuppressWarnings("deprecation")
 	@Override
 	public BlockState updateShape(BlockState state, Direction direction, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
-		if (state.getValue(WATERLOGGED)) {
-			level.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
-		}
+//		if (state.getValue(WATERLOGGED)) {
+//			level.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
+//		}
 		return super.updateShape(state, direction, facingState, level, currentPos, facingPos);
 	}
 }

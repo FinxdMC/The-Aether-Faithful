@@ -135,13 +135,14 @@ public class AccessoriesMenu extends InventoryMenu implements AccessoriesButtonM
             this.addSlot(new Slot(playerInventory, i1, 8 + i1 * 18, 142));
         }
 
-        this.addSlot(new Slot(playerInventory, 40, 116, 62) {
-            @Override
-            @OnlyIn(Dist.CLIENT)
-            public Pair<ResourceLocation, ResourceLocation> getNoItemIcon() {
-                return Pair.of(InventoryMenu.BLOCK_ATLAS, InventoryMenu.EMPTY_ARMOR_SLOT_SHIELD);
-            }
-        });
+        /// Finxd: made the offhand slot go bye bye, no more covering and trying to "hide" it with a blank texture!
+//        this.addSlot(new Slot(playerInventory, 40, 116, 62) {
+//            @Override
+//            @OnlyIn(Dist.CLIENT)
+//            public Pair<ResourceLocation, ResourceLocation> getNoItemIcon() {
+//                return Pair.of(InventoryMenu.BLOCK_ATLAS, InventoryMenu.EMPTY_ARMOR_SLOT_SHIELD);
+//            }
+//        });
 
         this.curiosHandler.ifPresent(curios -> {
             Map<String, ICurioStacksHandler> curioMap = curios.getCurios();

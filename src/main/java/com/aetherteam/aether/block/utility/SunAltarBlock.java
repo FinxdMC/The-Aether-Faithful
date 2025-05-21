@@ -53,7 +53,8 @@ public class SunAltarBlock extends BaseEntityBlock {
 	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
 		if (!level.isClientSide()) {
 			if (AetherConfig.SERVER.sun_altar_whitelist.get() && !player.hasPermissions(4) && !SunAltarWhitelist.INSTANCE.isWhiteListed(player.getGameProfile())) { // Prevents non-operator or non-whitelisted players from using the Sun Altar on servers
-				player.displayClientMessage(Component.translatable(Aether.MODID + ".sun_altar.no_permission"), true); // Player doesn't have permission to use the Sun Altar.
+				//player.displayClientMessage(Component.translatable(Aether.MODID + ".sun_altar.no_permission"), true); // Player doesn't have permission to use the Sun Altar.
+				player.displayClientMessage(Component.translatable(Aether.MODID + ".sun_altar.no_permission"), false); ///Finxd: old-styled sun altar messages
 			} else {
 				if (AetherConfig.SERVER.sun_altar_dimensions.get().contains(level.dimension().location().toString())) {
 					Optional<AetherTime> aetherTimeOptional = level.getCapability(AetherCapabilities.AETHER_TIME_CAPABILITY).resolve();
@@ -61,13 +62,15 @@ public class SunAltarBlock extends BaseEntityBlock {
 						if (!aetherTimeOptional.get().getEternalDay()) { // Checks if the time is locked into eternal day or not.
 							this.openScreen(level, pos, player, AetherDimensions.AETHER_TICKS_PER_DAY);
 						} else {
-							player.displayClientMessage(Component.translatable(Aether.MODID + ".sun_altar.in_control"), true); // Sun Spirit is still in control of the realm.
+							//player.displayClientMessage(Component.translatable(Aether.MODID + ".sun_altar.in_control"), true); // Sun Spirit is still in control of the realm.
+							player.displayClientMessage(Component.translatable(Aether.MODID + ".sun_altar.in_control"), false); ///Finxd: old-styled sun altar messages
 						}
 					} else {
 						this.openScreen(level, pos, player, 24000);
 					}
 				} else {
-					player.displayClientMessage(Component.translatable(Aether.MODID + ".sun_altar.no_power"), true); // Sun Altar has no power in the dimension.
+					//player.displayClientMessage(Component.translatable(Aether.MODID + ".sun_altar.no_power"), true); // Sun Altar has no power in the dimension.
+					player.displayClientMessage(Component.translatable(Aether.MODID + ".sun_altar.no_power"), false); ///Finxd: old-styled sun altar messages
 				}
 			}
 		}

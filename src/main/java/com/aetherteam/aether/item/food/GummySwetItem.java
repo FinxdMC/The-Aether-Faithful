@@ -73,7 +73,8 @@ public class GummySwetItem extends Item implements ConsumableItem {
 
 	@Override
 	public int getUseDuration(ItemStack stack) {
-		return 16;
+		//return 16;
+		return 1; ///Finxd: instant-eat gummy swet (may contain swet)
 	}
 
 	/**

@@ -33,29 +33,33 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 /**
  * Mostly copied from {@link ChestBlock} without inventory functionality.
  */
-public class ChestMimicBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
+//public class ChestMimicBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
+public class ChestMimicBlock extends BaseEntityBlock { ///Finxd: no waterlogged, please
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
-	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-	protected static final VoxelShape SHAPE = Block.box(1.0, 0.0, 1.0, 15.0, 14.0, 15.0);
+	//public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+	//protected static final VoxelShape SHAPE = Block.box(1.0, 0.0, 1.0, 15.0, 14.0, 15.0);
+	protected static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0, 16.0, 16.0, 16.0); ///Finxd: made the mimic a full block
 
 	public ChestMimicBlock(Properties properties) {
 		super(properties);
-		this.registerDefaultState(this.getStateDefinition().any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, false));
+		//this.registerDefaultState(this.getStateDefinition().any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, false));
+		this.registerDefaultState(this.getStateDefinition().any().setValue(FACING, Direction.NORTH));
 	}
 
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		builder.add(FACING, WATERLOGGED);
+		//builder.add(FACING, WATERLOGGED);
+		builder.add(FACING);
 	}
 
 	/**
 	 * Warning for "deprecation" is suppressed because the method is fine to override.
 	 */
 	@SuppressWarnings("deprecation")
-	@Override
-	public FluidState getFluidState(BlockState state) {
-		return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
-	}
+//	@Override
+//	public FluidState getFluidState(BlockState state) {
+//		return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
+//	}
 
 	@Override
 	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
@@ -123,7 +127,8 @@ public class ChestMimicBlock extends BaseEntityBlock implements SimpleWaterlogge
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
 		Direction direction = context.getHorizontalDirection().getOpposite();
 		FluidState fluidState = context.getLevel().getFluidState(context.getClickedPos());
-		return this.defaultBlockState().setValue(FACING, direction).setValue(WATERLOGGED, fluidState.is(Fluids.WATER));
+		//return this.defaultBlockState().setValue(FACING, direction).setValue(WATERLOGGED, fluidState.is(Fluids.WATER));
+		return this.defaultBlockState().setValue(FACING, direction);
 	}
 
 	/**
@@ -168,7 +173,8 @@ public class ChestMimicBlock extends BaseEntityBlock implements SimpleWaterlogge
 	@SuppressWarnings("deprecation")
 	@Override
 	public RenderShape getRenderShape(BlockState state) {
-		return RenderShape.ENTITYBLOCK_ANIMATED;
+		//return RenderShape.ENTITYBLOCK_ANIMATED;
+		return RenderShape.MODEL; ///Finxd
 	}
 
 	/**
@@ -177,9 +183,9 @@ public class ChestMimicBlock extends BaseEntityBlock implements SimpleWaterlogge
 	@SuppressWarnings("deprecation")
 	@Override
 	public BlockState updateShape(BlockState state, Direction direction, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
-		if (state.getValue(WATERLOGGED)) {
-			level.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
-		}
+//		if (state.getValue(WATERLOGGED)) {
+//			level.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
+//		}
 		return super.updateShape(state, direction, facingState, level, currentPos, facingPos);
 	}
 }

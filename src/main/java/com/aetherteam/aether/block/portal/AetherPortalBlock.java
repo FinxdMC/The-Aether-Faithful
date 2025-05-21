@@ -18,6 +18,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -60,7 +61,8 @@ public class AetherPortalBlock extends Block {
 	@Override
 	public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
 		EntityAccessor entityAccessor = (EntityAccessor) entity;
-		if (!entity.isPassenger() && !entity.isVehicle() && entity.canChangeDimensions() && !entity.getType().is(AetherTags.Entities.DUNGEON_ENTITIES)) {
+		//if (!entity.isPassenger() && !entity.isVehicle() && entity.canChangeDimensions() && !entity.getType().is(AetherTags.Entities.DUNGEON_ENTITIES)) {
+		if (entity.getType() == EntityType.PLAYER) { ///Finxd: only let players through the portals, fixing animals wandering off and from the aether
 			if (entity.isOnPortalCooldown()) {
 				entity.setPortalCooldown();
 			} else {

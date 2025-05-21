@@ -29,15 +29,16 @@ public class HolySwordItem extends SwordItem {
      * @param attacker The attacking {@link LivingEntity}.
      * @return Whether the enemy was hurt or not, as a {@link Boolean}.
      */
-    @Override
-    public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        if (EquipmentUtil.isFullStrength(attacker)) {
-            if (target.getMobType() == MobType.UNDEAD || target.isInvertedHealAndHarm()) {
-                stack.hurtAndBreak(10, attacker, (entity) -> entity.broadcastBreakEvent(EquipmentSlot.MAINHAND));
-            }
-        }
-        return super.hurtEnemy(stack, target, attacker);
-    }
+    ///Finxd: the weapon now always takes 1 durability like in the original mod
+//    @Override
+//    public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+//        if (EquipmentUtil.isFullStrength(attacker)) {
+//            if (target.getMobType() == MobType.UNDEAD || target.isInvertedHealAndHarm()) {
+//                stack.hurtAndBreak(10, attacker, (entity) -> entity.broadcastBreakEvent(EquipmentSlot.MAINHAND));
+//            }
+//        }
+//        return super.hurtEnemy(stack, target, attacker);
+//    }
 
     /**
      * Deals a base 15 damage to undead mobs or mobs that treat healing and harming effects as inverted, with an extra 2.5 damage for every level of Smite the item has, in addition to the weapon's default damage. This occurs if the attacker attacked with full strength as determined by {@link EquipmentUtil#isFullStrength(LivingEntity)}.
@@ -49,7 +50,8 @@ public class HolySwordItem extends SwordItem {
         float damage = event.getAmount();
         if (canPerformAbility(target, damageSource)) {
             ItemStack itemStack = target.getMainHandItem();
-            float bonus = 8.25F;
+            //float bonus = 8.25F;
+            float bonus = 15F; ///Finxd: increased bonus dmg to make the weapon actually useful against the undead, one-shotting unarmored foes like in the original mod
             int smiteModifier = itemStack.getEnchantmentLevel(Enchantments.SMITE);
             if (smiteModifier > 0) {
                 bonus += (smiteModifier * 2.5);

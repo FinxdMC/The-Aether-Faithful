@@ -1,0 +1,13 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+      "particle": "#down",
+      "down": "minecraft:block/piston_bottom",
+      "up": "#down",
+      "north": "aether:block/treasure_chest_front",
+      "south": "#side",
+      "east": "#side",
+      "west": "#side",
+      "side": "aether:block/treasure_chest_side"
+  }
+}
