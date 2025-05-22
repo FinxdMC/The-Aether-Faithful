@@ -1,4 +1,4 @@
-### This fork has the following changes:
+### This fork has the following changes: 
 ```
 - Non waterloggable and full block chests (mimic and treasure) to make this properly work i had to make the vanilla chest texture invisible, but nostalgic tweaks has a full block chests tweak that fixes this
 - The portal block only allows players to go through them, no longer will random animals wander off and from the aether, this was how portals worked in the original mod
