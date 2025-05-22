@@ -1,3 +1,18 @@
+### This fork has the following changes:
+```
+- Non waterloggable and full block chests (mimic and treasure) to make this properly work i had to make the vanilla chest texture invisible, but nostalgic tweaks has a full block chests tweak that fixes this
+- The portal block only allows players to go through them, no longer will random animals wander off and from the aether, this was how portals worked in the original mod
+- Removed the offhand slot from accessories menu (nostalgic tweaks only removes it from the vanilla inventory)
+- Ambrosium shards and gummy swets can be eaten instantly (other mods didn't change this because these aren't regular food items)
+- Dart shooters no longer have cooldown, they work similar to old bows
+- Improved holy sword, now should one-shot unarmored undead like how it used to behave (and it still should behave) and made the sword only take 1 point of damage each hit
+- Removed bronze dungeon surface ruins, they defeat the point of having that square tunnel in the sides of islands, and they make it too easy to enter them
+- mobs shouldn't spawn with gloves (or any other accessory), i just think the gloves look awful on their hands and this wasn't a thing in older aether versions
+- The sun altar and locked chest messages now show up in the chat (this one is an exception; there were no messages shown in B1.7.3 version)
+
+i didn't touch world gen as the current world gen is close enough to the original and idk how would i have done that anyway lol
+```
+
 ![Banner image](assets/banner.webp)
 # The Aether
 
