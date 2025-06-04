@@ -37,7 +37,8 @@ public class SkyrootRemedyBucketItem extends Item implements ConsumableItem {
 
     @Override
     public int getUseDuration(ItemStack stack) {
-        return 32;
+        //return 32;
+        return 1; ///FINXD: remedy buckets were instant
     }
 
     @Override

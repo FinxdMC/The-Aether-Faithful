@@ -28,4 +28,10 @@ public class SkyrootMilkBucketItem extends MilkBucketItem implements ConsumableI
         this.consume(this, stack, user);
         return stack.isEmpty() ? new ItemStack(AetherItems.SKYROOT_BUCKET.get()) : stack;
     }
+
+    ///FINXD: skyroot milk buckets weren't drinkable
+    @Override
+    public int getUseDuration(ItemStack stack) {
+        return 0;
+    }
 }
