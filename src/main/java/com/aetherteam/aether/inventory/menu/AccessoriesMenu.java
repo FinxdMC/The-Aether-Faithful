@@ -137,7 +137,7 @@ public class AccessoriesMenu extends InventoryMenu implements AccessoriesButtonM
 
         /// Finxd: made the offhand slot go bye bye, no more covering and trying to "hide" it with a blank texture!
         //this.addSlot(new Slot(playerInventory, 40, 116, 62) {
-        this.addSlot(new Slot(playerInventory, 40, -116, -62) {
+        this.addSlot(new Slot(playerInventory, 40, Integer.MIN_VALUE, Integer.MIN_VALUE) { ///Finxd: had to add offhand slot back technically, but it's moved way off-screen, so far in fact that it's practically gone
             @Override
             @OnlyIn(Dist.CLIENT)
             public Pair<ResourceLocation, ResourceLocation> getNoItemIcon() {
