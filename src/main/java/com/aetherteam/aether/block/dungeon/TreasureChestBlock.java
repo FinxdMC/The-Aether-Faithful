@@ -39,6 +39,8 @@ import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeHooks;
 
 import java.util.function.Supplier;
@@ -147,7 +149,9 @@ public class TreasureChestBlock extends AbstractChestBlock<TreasureChestBlockEnt
 					}
 				}
 				//player.displayClientMessage(Component.translatable(kind.getNamespace() + "." + kind.getPath() + "_treasure_chest_locked"), true);
-				player.displayClientMessage(Component.translatable(kind.getNamespace() + "." + kind.getPath() + "_treasure_chest_locked"), false); ///Finxd: old-styled locked chest messages, for some reason it shows it 2 times :/
+				if(!level.isClientSide) {
+					player.displayClientMessage(Component.translatable(kind.getNamespace() + "." + kind.getPath() + "_treasure_chest_locked"), false); ///Finxd: old-styled locked chest messages
+				}
 			} else {
 				MenuProvider menuProvider = this.getMenuProvider(state, level, pos);
 				player.openMenu(menuProvider);
